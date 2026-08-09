@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ian Goldberg | Adoption & Enablement</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FAFAF7;
+    --ink: #1C2733;
+    --slate: #5C6B7A;
+    --marker: #FFE34D;
+    --line: #DFE3E0;
+    --card: #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Source Serif 4", Georgia, serif;
+    font-size: 1.075rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .mono {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--slate);
+  }
+
+  h1, h2, h3 { font-family: "Archivo", system-ui, sans-serif; line-height: 1.08; }
+
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible {
+    outline: 3px solid var(--ink);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .wrap { max-width: 1060px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- header ---------- */
+  header {
+    position: sticky; top: 0; z-index: 20;
+    background: rgba(250,250,247,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 0;
+  }
+  .wordmark {
+    font-family: "Archivo", sans-serif; font-weight: 800; font-size: 1rem;
+    text-decoration: none; letter-spacing: -0.01em;
+  }
+  .wordmark span { background: linear-gradient(transparent 55%, var(--marker) 55%); }
+  .nav-links { display: flex; gap: 26px; list-style: none; }
+  .nav-links a {
+    font-family: "IBM Plex Mono", monospace; font-size: 0.72rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; color: var(--slate);
+  }
+  .nav-links a:hover { color: var(--ink); }
+  @media (max-width: 640px) { .nav-links { display: none; } }
+
+  /* ---------- highlighter signature ---------- */
+  .hl {
+    background-image: linear-gradient(0deg, var(--marker) 0%, var(--marker) 100%);
+    background-repeat: no-repeat;
+    background-size: 0% 42%;
+    background-position: 0 78%;
+    transition: background-size 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    padding: 0 0.06em;
+  }
+  .hl.on { background-size: 100% 42%; }
+  @media (prefers-reduced-motion: reduce) {
+    .hl { background-size: 100% 42%; }
+  }
+
+  /* ---------- hero ---------- */
+  .hero { padding: 96px 0 84px; border-bottom: 1px solid var(--line); }
+  .hero .mono { display: block; margin-bottom: 22px; }
+  .hero h1 {
+    font-size: clamp(2.4rem, 6vw, 4.4rem);
+    font-weight: 800; letter-spacing: -0.025em;
+    max-width: 15ch;
+  }
+  .hero p.lede {
+    margin-top: 28px; max-width: 54ch;
+    font-size: 1.2rem; color: var(--slate);
+  }
+  .hero p.lede strong { color: var(--ink); font-weight: 600; }
+  .cta-row { margin-top: 38px; display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    font-family: "Archivo", sans-serif; font-weight: 700; font-size: 0.92rem;
+    text-decoration: none; padding: 13px 22px; border-radius: 4px;
+    display: inline-block;
+  }
+  .btn-primary { background: var(--ink); color: var(--paper); }
+  .btn-primary:hover { background: #2C3B4B; }
+  .btn-ghost { border: 1.5px solid var(--ink); }
+  .btn-ghost:hover { background: var(--marker); border-color: var(--ink); }
+
+  /* ---------- sections ---------- */
+  section { padding: 84px 0; border-bottom: 1px solid var(--line); }
+  .sec-head { display: flex; align-items: baseline; gap: 18px; margin-bottom: 44px; }
+  .sec-head h2 { font-size: clamp(1.6rem, 3.2vw, 2.2rem); font-weight: 800; letter-spacing: -0.02em; }
+
+  /* principles */
+  .principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  @media (max-width: 800px) { .principles { grid-template-columns: 1fr; } }
+  .principle { border-top: 3px solid var(--ink); padding-top: 18px; }
+  .principle h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 10px; }
+  .principle p { color: var(--slate); font-size: 0.98rem; }
+
+  /* proof */
+  .proof-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  @media (max-width: 800px) { .proof-grid { grid-template-columns: 1fr; } }
+  .proof-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 8px;
+    padding: 26px 26px 24px;
+  }
+  .proof-card .mono { display: block; margin-bottom: 12px; }
+  .proof-card h3 { font-size: 1.18rem; font-weight: 700; margin-bottom: 10px; }
+  .proof-card p { color: var(--slate); font-size: 0.98rem; }
+
+  .stats {
+    margin-top: 40px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
+    border-top: 1px solid var(--line); padding-top: 32px;
+  }
+  @media (max-width: 800px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+  .stat b {
+    font-family: "Archivo", sans-serif; font-weight: 800;
+    font-size: clamp(1.5rem, 3vw, 2rem); letter-spacing: -0.02em; display: block;
+  }
+  .stat span { color: var(--slate); font-size: 0.85rem; }
+
+  /* materials */
+  .materials { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  @media (max-width: 800px) { .materials { grid-template-columns: 1fr; } }
+  .material {
+    background: var(--card); border: 1px solid var(--line); border-radius: 8px;
+    padding: 24px; display: flex; flex-direction: column; gap: 12px;
+  }
+  .badge {
+    align-self: flex-start;
+    font-family: "IBM Plex Mono", monospace; font-size: 0.66rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    background: var(--marker); padding: 4px 9px; border-radius: 3px; color: var(--ink);
+  }
+  .material h3 { font-size: 1.08rem; font-weight: 700; }
+  .material p { color: var(--slate); font-size: 0.94rem; flex-grow: 1; }
+  .material .kind { color: var(--slate); }
+
+  /* about */
+  .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: start; }
+  @media (max-width: 800px) { .about-grid { grid-template-columns: 1fr; } }
+  .about-grid p + p { margin-top: 16px; }
+  .facts { border: 1px solid var(--line); border-radius: 8px; background: var(--card); padding: 24px; }
+  .facts dt { font-family: "IBM Plex Mono", monospace; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--slate); margin-top: 14px; }
+  .facts dt:first-child { margin-top: 0; }
+  .facts dd { font-size: 0.98rem; margin-top: 3px; }
+
+  /* contact / footer */
+  footer { padding: 72px 0 56px; }
+  footer h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; letter-spacing: -0.02em; max-width: 20ch; }
+  footer p { margin-top: 16px; color: var(--slate); max-width: 50ch; }
+  .foot-row { margin-top: 34px; display: flex; gap: 14px; flex-wrap: wrap; }
+  .fineprint { margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--line);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="wordmark" href="#top"><span>Ian Goldberg</span></a>
+    <ul class="nav-links">
+      <li><a href="#approach">Approach</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#materials">Materials</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="top">
+
+  <div class="hero">
+    <div class="wrap">
+      <span class="mono">Adoption &amp; Enablement &middot; Denver, CO</span>
+      <h1>Good training <span class="hl">assumes nothing.</span></h1>
+      <p class="lede">Most training content is written by experts, for experts. I build training, tools, and workflows for <strong>everyone else</strong>: the teams who are told to adopt something new &mdash; an AI assistant, a new platform, a process change &mdash; and handed a login. I'm Ian, a product manager who teaches organizations how to actually adopt new systems, not just buy them.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#work">See the work</a>
+        <a class="btn btn-ghost" href="#contact">Get in touch</a>
+      </div>
+    </div>
+  </div>
+
+  <section id="approach">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="mono">01</span>
+        <h2>How I teach</h2>
+      </div>
+      <div class="principles">
+        <div class="principle">
+          <h3>Assume nothing</h3>
+          <p>Experts forget what beginners don't know. Every guide I make starts from zero: no jargon without a definition, no step skipped because it's "obvious."</p>
+        </div>
+        <div class="principle">
+          <h3>Show, don't lecture</h3>
+          <p>Nobody learns a new system from a slide about it. I teach with live builds and real workflows, so people leave with something working, not something conceptual.</p>
+        </div>
+        <div class="principle">
+          <h3>Build for the day after the demo</h3>
+          <p>Adoption dies when the demo ends. I pair every session with repeatable materials, templates, and a home where knowledge accumulates instead of evaporating.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="mono">02</span>
+        <h2>Enablement work, in the wild</h2>
+      </div>
+      <div class="proof-grid">
+        <div class="proof-card">
+          <span class="mono">Knowledge systems</span>
+          <h3>Self-serve learning system</h3>
+          <p>Designed and launched a self-serve learning system for a large software organization: practical guides, working examples, and starter workflows that let teams onboard themselves instead of waiting for a training session to be scheduled.</p>
+        </div>
+        <div class="proof-card">
+          <span class="mono">Workflow automation</span>
+          <h3>Automated product workflow</h3>
+          <p>Built an end-to-end automation connecting planning and ticketing tools, turning hours of manual roadmap-to-backlog work into minutes. Presented live to senior leadership.</p>
+        </div>
+        <div class="proof-card">
+          <span class="mono">Communication</span>
+          <h3>Capability briefings</h3>
+          <p>Created and ran a recurring briefing that translated platform and capability changes into plain language for hundreds of engineers, because a capability nobody hears about is a capability nobody uses.</p>
+        </div>
+        <div class="proof-card">
+          <span class="mono">Live teaching</span>
+          <h3>Demos and workshops</h3>
+          <p>Delivered eight live product demos and technical presentations in the past year, from hands-on technical deep-dives to executive-level reviews for cross-functional audiences.</p>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><b>263%</b><span>growth in monthly active users of an internal developer platform</span></div>
+        <div class="stat"><b>$860K+</b><span>annual infrastructure savings from a migration I led</span></div>
+        <div class="stat"><b>2B/day</b><span>previously dropped records recovered via a streaming pipeline migration</span></div>
+        <div class="stat"><b>9 yrs</b><span>enterprise software, from consulting to platform product management</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="materials">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="mono">03</span>
+        <h2>Learning materials</h2>
+      </div>
+      <div class="materials">
+        <div class="material">
+          <span class="badge">In production</span>
+          <h3>Build your first automation</h3>
+          <p>A from-zero walkthrough: what an automation is, why it beats doing the task manually, and building one that does real work by the end.</p>
+          <span class="mono kind">Video + guide</span>
+        </div>
+        <div class="material">
+          <span class="badge">In production</span>
+          <h3>Automate a product workflow end to end</h3>
+          <p>Connecting a new tool to the ones you already use, with the unglamorous setup steps everyone else skips.</p>
+          <span class="mono kind">Video</span>
+        </div>
+        <div class="material">
+          <span class="badge">In production</span>
+          <h3>Stand up a learning hub people actually use</h3>
+          <p>The structure, the starter content, and the adoption tactics that keep it from becoming another dead wiki.</p>
+          <span class="mono kind">Guide (PDF)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="mono">04</span>
+        <h2>About</h2>
+      </div>
+      <div class="about-grid">
+        <div>
+          <p>I'm a product manager with nine years in enterprise software: five implementing enterprise systems for large clients as a consultant and solution architect, and four running an internal developer platform used by more than 1,500 engineers every month.</p>
+          <p>That combination is the point. I've been the person explaining complex systems to skeptical rooms, and the person responsible for whether a platform actually gets adopted. Adoption is the same problem no matter the tool: the technology is rarely the bottleneck. <span class="hl">The teaching is.</span></p>
+        </div>
+        <dl class="facts">
+          <dt>Based in</dt><dd>Denver, Colorado</dd>
+          <dt>Current role</dt><dd>Product Manager, internal developer platform</dd>
+          <dt>Focus</dt><dd>Adoption enablement, training programs, knowledge systems, change management</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <span class="mono">05 &middot; Contact</span>
+    <h2 style="margin-top:18px;">Trying to get your team to <span class="hl">actually adopt something new?</span></h2>
+    <p>I'm happy to talk about enablement, training programs, or how any of the work above was built.</p>
+    <div class="foot-row">
+      <a class="btn btn-primary" href="https://www.linkedin.com/in/ian-goldberg">Connect on LinkedIn</a>
+    </div>
+    <div class="fineprint">
+      <span class="mono">&copy; 2026 Ian Goldberg</span>
+      <span class="mono">Made in Denver</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var marks = document.querySelectorAll(".hl");
+    if (reduced || !("IntersectionObserver" in window)) {
+      marks.forEach(function (m) { m.classList.add("on"); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add("on");
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.6 });
+    marks.forEach(function (m) { io.observe(m); });
+  })();
+</script>
+
+</body>
+</html>
