@@ -150,23 +150,6 @@
   }
   .stat span { color: var(--slate); font-size: 0.85rem; }
 
-  /* materials */
-  .materials { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-  @media (max-width: 800px) { .materials { grid-template-columns: 1fr; } }
-  .material {
-    background: var(--card); border: 1px solid var(--line); border-radius: 8px;
-    padding: 24px; display: flex; flex-direction: column; gap: 12px;
-  }
-  .badge {
-    align-self: flex-start;
-    font-family: "IBM Plex Mono", monospace; font-size: 0.66rem;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    background: var(--marker); padding: 4px 9px; border-radius: 3px; color: var(--ink);
-  }
-  .material h3 { font-size: 1.08rem; font-weight: 700; }
-  .material p { color: var(--slate); font-size: 0.94rem; flex-grow: 1; }
-  .material .kind { color: var(--slate); }
-
   /* about */
   .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: start; }
   @media (max-width: 800px) { .about-grid { grid-template-columns: 1fr; } }
@@ -193,7 +176,6 @@
     <ul class="nav-links">
       <li><a href="#approach">Approach</a></li>
       <li><a href="#work">Work</a></li>
-      <li><a href="#materials">Materials</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -209,7 +191,6 @@
       <p class="lede">Most training content is written by experts, for experts. I build training, tools, and workflows for <strong>everyone else</strong>: the teams who are told to adopt something new, whether that's an AI assistant, a new platform, or a process change, and handed a login. I'm Ian. My focus is on getting new systems actually adopted, not just bought.</p>
       <div class="cta-row">
         <a class="btn btn-primary" href="#work">See the work</a>
-        <a class="btn btn-ghost" href="#contact">Get in touch</a>
       </div>
     </div>
   </div>
@@ -218,7 +199,7 @@
     <div class="wrap">
       <div class="sec-head">
         <span class="mono">01</span>
-        <h2>How I teach</h2>
+        <h2>How I work</h2>
       </div>
       <div class="principles">
         <div class="principle">
@@ -227,7 +208,7 @@
         </div>
         <div class="principle">
           <h3>Show, don't lecture</h3>
-          <p>Nobody learns a new system from a slide about it. I teach with live builds and real workflows, so people leave with something working, not something conceptual.</p>
+          <p>Nobody learns a new system from a slide about it. I use live builds and real workflows, so people leave with something working, not something conceptual.</p>
         </div>
         <div class="principle">
           <h3>Build for the day after the demo</h3>
@@ -260,7 +241,7 @@
           <p>Created and ran a recurring briefing that translated platform and capability changes into plain language for hundreds of engineers, because a capability nobody hears about is a capability nobody uses.</p>
         </div>
         <div class="proof-card">
-          <span class="mono">Live teaching</span>
+          <span class="mono">Live sessions</span>
           <h3>Demos and workshops</h3>
           <p>Delivered eight live product demos and technical presentations in the past year, from hands-on technical deep-dives to executive-level reviews for cross-functional audiences.</p>
         </div>
@@ -275,39 +256,10 @@
     </div>
   </section>
 
-  <section id="materials">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="mono">03</span>
-        <h2>Learning materials</h2>
-      </div>
-      <div class="materials">
-        <div class="material">
-          <span class="badge">In production</span>
-          <h3>Build your first automation</h3>
-          <p>A from-zero walkthrough: what an automation is, why it beats doing the task manually, and building one that does real work by the end.</p>
-          <span class="mono kind">Video + guide</span>
-        </div>
-        <div class="material">
-          <span class="badge">In production</span>
-          <h3>Automate a product workflow end to end</h3>
-          <p>Connecting a new tool to the ones you already use, with the unglamorous setup steps everyone else skips.</p>
-          <span class="mono kind">Video</span>
-        </div>
-        <div class="material">
-          <span class="badge">In production</span>
-          <h3>Stand up a learning hub people actually use</h3>
-          <p>The structure, the starter content, and the adoption tactics that keep it from becoming another dead wiki.</p>
-          <span class="mono kind">Guide (PDF)</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section id="about">
     <div class="wrap">
       <div class="sec-head">
-        <span class="mono">04</span>
+        <span class="mono">03</span>
         <h2>About</h2>
       </div>
       <div class="about-grid">
@@ -329,7 +281,7 @@
 
 <footer id="contact">
   <div class="wrap">
-    <span class="mono">05 &middot; Contact</span>
+    <span class="mono">04 &middot; Contact</span>
     <h2 style="margin-top:18px;"><span class="hl">Get in touch.</span></h2>
     <p>I'm happy to talk about enablement, training programs, or how any of the work above was built.</p>
     <div class="foot-row">
