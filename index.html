@@ -9,17 +9,17 @@
 <link rel="preload" as="image" href="front-range.jpeg">
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  /* Palette sampled from the Front Range photograph. Blocks use the mid-tone
-     slope blue rather than the darkest shadow, so they sit in the same tonal
-     range as the rest of the page instead of reading as separate slabs. */
+  /* Palette sampled from the Front Range photograph. The page is a light page:
+     colour comes from saturation, not from darkness, so panels are tinted
+     rather than inverted. */
   :root {
     --snow:       #F4F8FC;   /* snow in daylight       -> page */
     --card:       #FFFFFF;
-    --sky:        #CFE3F5;   /* open sky               -> highlight */
+    --sky:        #CFE3F5;   /* open sky               -> panels, highlight */
     --haze:       #DCE9F6;   /* sky at the horizon     -> alternating sections */
-    --mid:        #3A6698;   /* mid slope in sunlight  -> colour blocks */
+    --mid:        #3A6698;   /* mid slope in sunlight  -> rules, accents */
     --ridge:      #3F6E9E;   /* sunlit ridge           -> small accents */
-    --depth:      #1F4A78;   /* shadowed slope         -> buttons, rules */
+    --depth:      #1F4A78;   /* shadowed slope         -> buttons, numerals */
     --navy:       #19365F;   /* deepest saturated blue -> hover states */
     --forest-lit: #3D3E33;   /* sunlit pine canopy     -> forest accents */
     --pine:       #2A3A46;   /* haze-shifted forest    -> body text */
@@ -196,18 +196,19 @@
   .proof-card h3 { font-size: 1.14rem; font-weight: 500; margin-bottom: 10px; letter-spacing: -0.015em; }
   .proof-card p { color: var(--pine); font-size: 0.97rem; font-weight: 300; }
 
-  /* stats panel */
+  /* stats panel: tinted, not inverted */
   .stats {
     margin-top: 40px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px;
-    background: var(--mid); border-radius: 4px; padding: 38px 34px;
+    background: var(--sky); border-radius: 4px; padding: 38px 34px;
+    border-top: 4px solid var(--mid);
   }
   @media (max-width: 800px) { .stats { grid-template-columns: repeat(2, 1fr); padding: 30px 26px; } }
   .stat b {
-    font-weight: 600; font-size: clamp(1.6rem, 3.2vw, 2.1rem);
-    letter-spacing: -0.035em; display: block; color: #fff; margin-bottom: 5px;
+    font-weight: 700; font-size: clamp(1.6rem, 3.2vw, 2.1rem);
+    letter-spacing: -0.035em; display: block; color: var(--depth); margin-bottom: 5px;
   }
   .stat span {
-    color: rgba(255,255,255,0.9); font-size: 0.85rem; font-weight: 400;
+    color: var(--pine); font-size: 0.85rem; font-weight: 400;
     line-height: 1.5; display: block;
   }
 
@@ -228,22 +229,19 @@
   .facts dd { font-size: 0.97rem; font-weight: 400; margin-top: 3px; color: var(--ink); }
 
   /* contact / footer */
-  footer { padding: 88px 0 56px; background: var(--mid); color: #fff; }
+  footer { padding: 88px 0 56px; background: var(--sky); color: var(--pine); }
   footer h2 {
     font-size: clamp(1.9rem, 4.2vw, 2.6rem); font-weight: 700;
-    letter-spacing: -0.035em; max-width: 20ch; color: #fff;
+    letter-spacing: -0.035em; max-width: 20ch; color: var(--ink);
   }
   footer .contact-copy {
-    margin-top: 18px; color: rgba(255,255,255,0.92); font-weight: 400; max-width: 52ch;
+    margin-top: 18px; color: var(--pine); font-weight: 300; max-width: 52ch;
   }
   .foot-row { margin-top: 36px; }
-  footer .btn { background: #fff; color: var(--depth); font-weight: 600; }
-  footer .btn:hover { background: var(--sky); color: var(--depth); box-shadow: none; }
-  footer a:focus-visible { outline-color: #fff; }
   .fineprint {
-    margin-top: 64px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.3);
+    margin-top: 64px; padding-top: 22px; border-top: 1px solid rgba(31,74,120,0.25);
   }
-  .fineprint .mono { color: rgba(255,255,255,0.75); }
+  .fineprint .mono { color: var(--depth); }
 </style>
 </head>
 <body>
