@@ -11,10 +11,10 @@
 <style>
   /* Palette sampled from the Front Range photograph used in the hero. */
   :root {
-    --snow:   #F5F8FB;   /* snow in daylight, faintly blue -> page */
+    --snow:   #F5F8FB;   /* snow in daylight    -> page */
     --card:   #FFFFFF;
     --sky:    #DDEAF6;   /* faded sky wash      -> highlight */
-    --haze:   #E4EFF9;
+    --haze:   #E7F0F8;   /* sky at the horizon  -> alternating sections */
     --ridge:  #47749F;   /* sunlit ridge        -> mid accent */
     --depth:  #26527D;   /* deep shadowed slope -> primary accent */
     --pine:   #2A3A46;   /* forest              -> secondary text */
@@ -145,6 +145,7 @@
 
   /* ---------- sections ---------- */
   .sec { padding: 86px 0; border-bottom: 1px solid var(--line); }
+  .sec.tint { background: var(--haze); }
   .sec-head { margin-bottom: 46px; }
   .sec-head::before {
     content: ""; display: block; width: 36px; height: 4px;
@@ -167,27 +168,36 @@
   @media (max-width: 800px) { .proof-grid { grid-template-columns: 1fr; } }
   .proof-card {
     background: var(--card); border: 1px solid var(--line); border-radius: 4px;
-    padding: 28px 28px 26px;
+    padding: 26px 28px 26px;
+    border-top: 3px solid var(--ridge);
     transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
   }
   .proof-card:hover {
-    border-color: var(--ridge); transform: translateY(-3px);
+    border-top-color: var(--depth); transform: translateY(-3px);
     box-shadow: 0 14px 32px -20px rgba(13,18,22,0.5);
   }
-  .proof-card .mono { display: block; margin-bottom: 12px; }
+  .proof-card .mono {
+    display: inline-block; margin-bottom: 14px;
+    background: var(--haze); color: var(--depth);
+    padding: 4px 9px; border-radius: 3px;
+  }
   .proof-card h3 { font-size: 1.14rem; font-weight: 500; margin-bottom: 10px; letter-spacing: -0.015em; }
   .proof-card p { color: var(--pine); font-size: 0.97rem; font-weight: 300; }
 
+  /* stats panel: the one saturated block on the page */
   .stats {
-    margin-top: 44px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
-    border-top: 1px solid var(--line); padding-top: 34px;
+    margin-top: 40px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px;
+    background: var(--depth); border-radius: 4px; padding: 38px 34px;
   }
-  @media (max-width: 800px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 800px) { .stats { grid-template-columns: repeat(2, 1fr); padding: 30px 26px; } }
   .stat b {
     font-weight: 600; font-size: clamp(1.6rem, 3.2vw, 2.1rem);
-    letter-spacing: -0.035em; display: block; color: var(--depth); margin-bottom: 4px;
+    letter-spacing: -0.035em; display: block; color: #fff; margin-bottom: 5px;
   }
-  .stat span { color: var(--pine); font-size: 0.85rem; font-weight: 300; line-height: 1.5; display: block; }
+  .stat span {
+    color: rgba(255,255,255,0.76); font-size: 0.85rem; font-weight: 300;
+    line-height: 1.5; display: block;
+  }
 
   /* about */
   .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 52px; align-items: start; }
@@ -245,7 +255,7 @@
     </div>
   </div>
 
-  <section class="sec" id="approach">
+  <section class="sec tint" id="approach">
     <div class="wrap">
       <div class="sec-head">
         <h2>How I work</h2>
@@ -304,7 +314,7 @@
     </div>
   </section>
 
-  <section class="sec" id="about">
+  <section class="sec tint" id="about">
     <div class="wrap">
       <div class="sec-head">
         <h2>About</h2>
