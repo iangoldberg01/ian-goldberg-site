@@ -13,7 +13,7 @@
   :root {
     --snow:   #F8F9F9;   /* brightest snow      -> page */
     --card:   #FFFFFF;
-    --sky:    #79CBFF;   /* bright open sky     -> highlight */
+    --sky:    #A8D8F5;   /* mid sky             -> highlight */
     --haze:   #E4EFF9;
     --ridge:  #4B6E9F;   /* sunlit ridge        -> mid accent */
     --depth:  #2D486B;   /* deep shadowed slope -> primary accent */
@@ -35,7 +35,7 @@
     color: var(--pine);
     font-family: "Roboto", system-ui, -apple-system, sans-serif;
     font-size: 1.02rem;
-    font-weight: 400;
+    font-weight: 300;
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
   }
@@ -68,13 +68,13 @@
   }
   .nav { display: flex; align-items: center; justify-content: space-between; padding: 15px 0; }
   .wordmark {
-    font-weight: 900; font-size: 1.05rem; color: var(--ink);
+    font-weight: 700; font-size: 1.05rem; color: var(--ink);
     text-decoration: none; letter-spacing: -0.02em;
   }
   .wordmark span { background: linear-gradient(transparent 58%, var(--sky) 58%); }
   .nav-links { display: flex; gap: 30px; list-style: none; }
   .nav-links a {
-    font-family: "Roboto", sans-serif; font-size: 0.86rem; font-weight: 500;
+    font-family: "Roboto", sans-serif; font-size: 0.86rem; font-weight: 400;
     text-decoration: none; color: var(--ridge);
     padding-bottom: 3px; border-bottom: 2px solid transparent;
     transition: color .18s ease, border-color .18s ease;
@@ -86,13 +86,13 @@
   .hl {
     background-image: linear-gradient(0deg, var(--sky) 0%, var(--sky) 100%);
     background-repeat: no-repeat;
-    background-size: 0% 38%;
-    background-position: 0 82%;
+    background-size: 0% 36%;
+    background-position: 0 84%;
     transition: background-size 1s cubic-bezier(0.22, 1, 0.36, 1);
     padding: 0 0.06em;
   }
-  .hl.on { background-size: 100% 38%; }
-  @media (prefers-reduced-motion: reduce) { .hl { background-size: 100% 38%; } }
+  .hl.on { background-size: 100% 36%; }
+  @media (prefers-reduced-motion: reduce) { .hl { background-size: 100% 36%; } }
 
   /* ---------- hero over the photograph ---------- */
   .hero {
@@ -118,15 +118,15 @@
   .hero .mono { display: block; margin-bottom: 24px; }
   .hero h1 {
     font-size: clamp(2.5rem, 6.2vw, 4.4rem);
-    font-weight: 900; letter-spacing: -0.035em; line-height: 1.06;
+    font-weight: 700; letter-spacing: -0.03em; line-height: 1.08;
     max-width: 15ch;
   }
   .hero .lede {
     margin-top: 28px; max-width: 54ch;
-    font-size: 1.16rem; font-weight: 400; color: var(--pine);
+    font-size: 1.16rem; font-weight: 300; color: var(--pine);
   }
-  .hero .lede strong { color: var(--ink); font-weight: 700; }
-  .cta-row { margin-top: 40px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .hero .lede strong { color: var(--ink); font-weight: 500; }
+  .cta-row { margin-top: 40px; }
   .btn {
     font-family: "Roboto", sans-serif; font-weight: 500; font-size: 0.94rem;
     text-decoration: none; padding: 13px 26px; border-radius: 100px;
@@ -137,7 +137,6 @@
     background: var(--ridge); transform: translateY(-1px);
     box-shadow: 0 8px 20px -10px rgba(45,72,107,0.7);
   }
-  .photo-credit { color: var(--depth); }
 
   /* ---------- sections ---------- */
   .sec { padding: 86px 0; border-bottom: 1px solid var(--line); }
@@ -148,14 +147,14 @@
   }
   .sec-head h2 {
     font-size: clamp(1.7rem, 3.4vw, 2.25rem);
-    font-weight: 700; letter-spacing: -0.03em; line-height: 1.12;
+    font-weight: 500; letter-spacing: -0.025em; line-height: 1.14;
   }
 
   /* principles */
   .principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
   @media (max-width: 800px) { .principles { grid-template-columns: 1fr; } }
   .principle { border-top: 3px solid var(--depth); padding-top: 20px; }
-  .principle h3 { font-size: 1.12rem; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.015em; }
+  .principle h3 { font-size: 1.12rem; font-weight: 500; margin-bottom: 10px; letter-spacing: -0.01em; }
   .principle p { color: var(--pine); font-size: 0.97rem; font-weight: 300; }
 
   /* proof */
@@ -171,7 +170,7 @@
     box-shadow: 0 14px 32px -20px rgba(13,18,22,0.5);
   }
   .proof-card .mono { display: block; margin-bottom: 12px; }
-  .proof-card h3 { font-size: 1.14rem; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.015em; }
+  .proof-card h3 { font-size: 1.14rem; font-weight: 500; margin-bottom: 10px; letter-spacing: -0.01em; }
   .proof-card p { color: var(--pine); font-size: 0.97rem; font-weight: 300; }
 
   .stats {
@@ -180,8 +179,8 @@
   }
   @media (max-width: 800px) { .stats { grid-template-columns: repeat(2, 1fr); } }
   .stat b {
-    font-weight: 900; font-size: clamp(1.6rem, 3.2vw, 2.1rem);
-    letter-spacing: -0.035em; display: block; color: var(--depth); margin-bottom: 4px;
+    font-weight: 500; font-size: clamp(1.6rem, 3.2vw, 2.1rem);
+    letter-spacing: -0.03em; display: block; color: var(--depth); margin-bottom: 4px;
   }
   .stat span { color: var(--pine); font-size: 0.85rem; font-weight: 300; line-height: 1.5; display: block; }
 
@@ -199,13 +198,13 @@
     text-transform: uppercase; color: var(--ridge); margin-top: 17px;
   }
   .facts dt:first-child { margin-top: 0; }
-  .facts dd { font-size: 0.97rem; margin-top: 3px; color: var(--ink); }
+  .facts dd { font-size: 0.97rem; font-weight: 400; margin-top: 3px; color: var(--ink); }
 
   /* contact / footer */
   footer { padding: 82px 0 60px; }
   footer h2 {
-    font-size: clamp(1.9rem, 4.2vw, 2.6rem); font-weight: 900;
-    letter-spacing: -0.035em; max-width: 20ch;
+    font-size: clamp(1.9rem, 4.2vw, 2.6rem); font-weight: 700;
+    letter-spacing: -0.03em; max-width: 20ch;
   }
   footer .contact-copy { margin-top: 18px; color: var(--pine); font-weight: 300; max-width: 52ch; }
   .foot-row { margin-top: 36px; }
@@ -238,7 +237,6 @@
       <p class="lede">I'm Ian. Most training content is written by experts, for experts. I build training, tools, and workflows for <strong>everyone else</strong>: the teams who are told to adopt something new and handed a login.</p>
       <div class="cta-row">
         <a class="btn" href="#work">See the work</a>
-        <span class="mono photo-credit">Front Range, west of Denver</span>
       </div>
     </div>
   </div>
@@ -333,7 +331,7 @@
     </div>
     <div class="fineprint">
       <span class="mono">&copy; 2026 Ian Goldberg</span>
-      <span class="mono">Made in Denver</span>
+      <span class="mono">Front Range, west of Denver</span>
     </div>
   </div>
 </footer>
