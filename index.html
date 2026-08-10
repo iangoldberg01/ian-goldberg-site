@@ -9,18 +9,16 @@
 <link rel="preload" as="image" href="front-range.jpeg">
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  /* Palette sampled from the Front Range photograph. The page descends the
-     way the photo does: sky, ridge, deep slope, treeline. Saturated bands
-     carry most of the page rather than sitting as accents on white. */
+  /* Palette sampled from the Front Range photograph. */
   :root {
-    --snow:       #F4F8FC;   /* snow in daylight        -> light bands */
+    --snow:       #F4F8FC;   /* snow in daylight        -> page */
     --card:       #FFFFFF;
     --sky:        #CFE3F5;   /* open sky                -> highlight */
-    --haze:       #DCE9F6;   /* sky at the horizon      -> soft fills */
+    --haze:       #DCE9F6;   /* sky at the horizon      -> alternating sections */
     --ridge:      #3F6E9E;   /* sunlit ridge            -> mid accent */
     --depth:      #1F4A78;   /* shadowed slope          -> primary accent */
-    --navy:       #19365F;   /* deepest saturated blue  -> dark bands */
-    --forest:     #262824;   /* pine canopy, 79deg hue  -> closing bands */
+    --navy:       #19365F;   /* deepest saturated blue  -> stats anchor */
+    --forest:     #262824;   /* pine canopy, 79deg hue  -> footer */
     --forest-lit: #3D3E33;   /* sunlit canopy           -> forest accents */
     --pine:       #2A3A46;   /* haze-shifted forest     -> body text */
     --ink:        #0D1216;   /* darkest treeline        -> headings */
@@ -103,19 +101,32 @@
   .hl.on { background-size: 100% 36%; }
   @media (prefers-reduced-motion: reduce) { .hl { background-size: 100% 36%; } }
 
-  /* ---------- hero over the photograph ---------- */
+  /* ---------- hero ----------
+     The scrim is a soft halo behind the text block, not a wash over the whole
+     photograph, so the mountains keep their colour everywhere else. */
   .hero {
     position: relative;
-    padding: 112px 0 104px;
+    padding: 116px 0 108px;
     background-image:
-      linear-gradient(100deg,
-        rgba(244,248,252,0.93) 0%,
-        rgba(244,248,252,0.80) 55%,
-        rgba(244,248,252,0.16) 100%),
+      radial-gradient(ellipse 78% 88% at 22% 54%,
+        rgba(244,248,252,0.97) 0%,
+        rgba(244,248,252,0.90) 34%,
+        rgba(244,248,252,0.52) 62%,
+        rgba(244,248,252,0.06) 100%),
+      linear-gradient(rgba(244,248,252,0.10), rgba(244,248,252,0.10)),
       url("front-range.jpeg");
     background-size: cover;
     background-position: center 58%;
     background-repeat: no-repeat;
+  }
+  @media (max-width: 760px) {
+    /* text spans the full width on small screens, so fall back to a wash */
+    .hero {
+      background-image:
+        linear-gradient(rgba(244,248,252,0.90), rgba(244,248,252,0.78)),
+        url("front-range.jpeg");
+      padding: 84px 0 76px;
+    }
   }
   .hero .wrap { position: relative; z-index: 2; }
   .hero .mono { display: block; margin-bottom: 24px; color: var(--depth); }
@@ -125,7 +136,7 @@
     max-width: 15ch;
   }
   .hero .lede {
-    margin-top: 28px; max-width: 54ch;
+    margin-top: 28px; max-width: 52ch;
     font-size: 1.16rem; font-weight: 400; color: var(--pine);
   }
   .hero .lede strong { color: var(--ink); font-weight: 600; }
@@ -143,8 +154,8 @@
   }
 
   /* ---------- sections ---------- */
-  .sec { padding: 92px 0; }
-  .sec.light { background: var(--snow); }
+  .sec { padding: 88px 0; border-bottom: 1px solid var(--line); }
+  .sec.tint { background: var(--haze); }
   .sec-head { margin-bottom: 46px; }
   .sec-head::before {
     content: ""; display: block; width: 36px; height: 4px;
@@ -155,29 +166,12 @@
     font-weight: 500; letter-spacing: -0.03em; line-height: 1.14;
   }
 
-  /* full-bleed saturated bands */
-  .sec.navy   { background: var(--navy); }
-  .sec.forest { background: var(--forest); }
-  .sec.navy .sec-head h2,
-  .sec.forest .sec-head h2 { color: #fff; }
-  .sec.navy .sec-head::before   { background: var(--sky); }
-  .sec.forest .sec-head::before { background: var(--forest-lit); }
-  .sec.navy .principle h3,
-  .sec.forest .principle h3 { color: #fff; }
-  .sec.navy .principle,
-  .sec.forest .principle { border-top-color: rgba(255,255,255,0.45); }
-  .sec.navy p,
-  .sec.forest p { color: rgba(255,255,255,0.82); }
-  /* on dark bands the highlighter needs dark text to stay a highlighter */
-  .sec.navy .hl,
-  .sec.forest .hl { color: var(--ink); }
-
   /* principles */
   .principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
   @media (max-width: 800px) { .principles { grid-template-columns: 1fr; } }
   .principle { border-top: 3px solid var(--forest-lit); padding-top: 20px; }
   .principle h3 { font-size: 1.12rem; font-weight: 500; margin-bottom: 10px; letter-spacing: -0.015em; }
-  .principle p { font-size: 0.97rem; font-weight: 300; }
+  .principle p { color: var(--pine); font-size: 0.97rem; font-weight: 300; }
 
   /* proof */
   .proof-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
@@ -218,9 +212,10 @@
   /* about */
   .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 52px; align-items: start; }
   @media (max-width: 800px) { .about-grid { grid-template-columns: 1fr; } }
+  .about-copy p { font-weight: 300; }
   .about-copy p + p { margin-top: 18px; }
   .facts {
-    border-radius: 4px; background: var(--card);
+    border: 1px solid var(--line); border-radius: 4px; background: var(--card);
     padding: 26px; border-left: 4px solid var(--forest-lit);
   }
   .facts dt {
@@ -276,7 +271,7 @@
     </div>
   </div>
 
-  <section class="sec navy" id="approach">
+  <section class="sec tint" id="approach">
     <div class="wrap">
       <div class="sec-head">
         <h2>How I work</h2>
@@ -298,7 +293,7 @@
     </div>
   </section>
 
-  <section class="sec light" id="work">
+  <section class="sec" id="work">
     <div class="wrap">
       <div class="sec-head">
         <h2>Enablement work, in the wild</h2>
@@ -335,7 +330,7 @@
     </div>
   </section>
 
-  <section class="sec forest" id="about">
+  <section class="sec tint" id="about">
     <div class="wrap">
       <div class="sec-head">
         <h2>About</h2>
