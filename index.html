@@ -11,15 +11,15 @@
 <style>
   /* Palette sampled from the Front Range photograph used in the hero. */
   :root {
-    --snow:   #F8F9F9;   /* brightest snow      -> page */
+    --snow:   #F5F8FB;   /* snow in daylight, faintly blue -> page */
     --card:   #FFFFFF;
     --sky:    #DDEAF6;   /* faded sky wash      -> highlight */
     --haze:   #E4EFF9;
-    --ridge:  #4B6E9F;   /* sunlit ridge        -> mid accent */
-    --depth:  #2D486B;   /* deep shadowed slope -> primary accent */
-    --pine:   #283137;   /* forest              -> secondary text */
+    --ridge:  #47749F;   /* sunlit ridge        -> mid accent */
+    --depth:  #26527D;   /* deep shadowed slope -> primary accent */
+    --pine:   #2A3A46;   /* forest              -> secondary text */
     --ink:    #0D1216;   /* darkest treeline    -> headings */
-    --line:   #DEE5EA;
+    --line:   #D7E1EA;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -62,7 +62,7 @@
   /* ---------- header ---------- */
   header {
     position: sticky; top: 0; z-index: 30;
-    background: rgba(248,249,249,0.86);
+    background: rgba(245,248,251,0.86);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--line);
   }
@@ -105,9 +105,9 @@
     border-bottom: 1px solid var(--line);
     background-image:
       linear-gradient(100deg,
-        rgba(248,249,249,0.96) 0%,
-        rgba(248,249,249,0.90) 42%,
-        rgba(248,249,249,0.58) 100%),
+        rgba(245,248,251,0.93) 0%,
+        rgba(245,248,251,0.84) 46%,
+        rgba(245,248,251,0.42) 100%),
       url("front-range.jpeg");
     background-size: cover;
     background-position: center 58%;
@@ -115,7 +115,7 @@
   }
   .hero::after {
     content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 90px;
-    background: linear-gradient(to bottom, rgba(248,249,249,0), var(--snow));
+    background: linear-gradient(to bottom, rgba(245,248,251,0), var(--snow));
     pointer-events: none;
   }
   .hero .wrap { position: relative; z-index: 2; }
@@ -127,9 +127,9 @@
   }
   .hero .lede {
     margin-top: 28px; max-width: 54ch;
-    font-size: 1.16rem; font-weight: 300; color: var(--pine);
+    font-size: 1.16rem; font-weight: 400; color: var(--pine);
   }
-  .hero .lede strong { color: var(--ink); font-weight: 500; }
+  .hero .lede strong { color: var(--ink); font-weight: 600; }
   .cta-row { margin-top: 40px; }
   .btn {
     font-family: "Inter", sans-serif; font-weight: 500; font-size: 0.94rem;
@@ -140,7 +140,7 @@
   }
   .btn:hover {
     background: var(--ridge); transform: translateY(-1px);
-    box-shadow: 0 8px 20px -10px rgba(45,72,107,0.7);
+    box-shadow: 0 8px 20px -10px rgba(38,82,125,0.7);
   }
 
   /* ---------- sections ---------- */
@@ -148,7 +148,7 @@
   .sec-head { margin-bottom: 46px; }
   .sec-head::before {
     content: ""; display: block; width: 36px; height: 4px;
-    background: var(--ridge); margin-bottom: 18px;
+    background: var(--depth); margin-bottom: 18px;
   }
   .sec-head h2 {
     font-size: clamp(1.7rem, 3.4vw, 2.25rem);
@@ -184,7 +184,7 @@
   }
   @media (max-width: 800px) { .stats { grid-template-columns: repeat(2, 1fr); } }
   .stat b {
-    font-weight: 500; font-size: clamp(1.6rem, 3.2vw, 2.1rem);
+    font-weight: 600; font-size: clamp(1.6rem, 3.2vw, 2.1rem);
     letter-spacing: -0.035em; display: block; color: var(--depth); margin-bottom: 4px;
   }
   .stat span { color: var(--pine); font-size: 0.85rem; font-weight: 300; line-height: 1.5; display: block; }
@@ -196,7 +196,7 @@
   .about-copy p + p { margin-top: 18px; }
   .facts {
     border: 1px solid var(--line); border-radius: 4px; background: var(--card);
-    padding: 26px; border-left: 4px solid var(--ridge);
+    padding: 26px; border-left: 4px solid var(--depth);
   }
   .facts dt {
     font-family: "Roboto Mono", monospace; font-size: 0.65rem; letter-spacing: 0.12em;
