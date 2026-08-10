@@ -105,8 +105,8 @@
   @media (prefers-reduced-motion: reduce) { .hl { background-size: 100% 36%; } }
 
   /* ---------- hero ----------
-     The scrim is a soft halo behind the text block, not a wash over the whole
-     photograph, so the mountains keep their colour everywhere else. */
+     Wide screens: the photo sits behind the text, with a soft halo scrim over
+     the left third only, so the mountains keep their colour everywhere else. */
   .hero {
     position: relative;
     padding: 116px 0 108px;
@@ -122,20 +122,6 @@
     background-position: center 58%;
     background-repeat: no-repeat;
   }
-  @media (max-width: 760px) {
-    /* Text spans the full width here, so the halo can't do the work. Keep the
-       wash light and let a soft glow behind the type carry legibility. */
-    .hero {
-      background-image:
-        linear-gradient(rgba(244,248,252,0.72), rgba(244,248,252,0.44)),
-        url("front-range.jpeg");
-      padding: 84px 0 76px;
-    }
-    .hero .mono,
-    .hero h1,
-    .hero .lede { text-shadow: 0 1px 14px rgba(244,248,252,0.95), 0 0 3px rgba(244,248,252,0.9); }
-    .hero .lede { font-weight: 500; color: var(--ink); }
-  }
   .hero .wrap { position: relative; z-index: 2; }
   .hero .mono { display: block; margin-bottom: 24px; color: var(--depth); }
   .hero h1 {
@@ -149,6 +135,22 @@
   }
   .hero .lede strong { color: var(--ink); font-weight: 600; }
   .cta-row { margin-top: 40px; }
+
+  /* Narrow screens: text can't share space with a photograph and stay readable,
+     so the photo runs full-bleed underneath it at full strength instead. */
+  .hero-photo { display: none; }
+  @media (max-width: 760px) {
+    .hero {
+      background-image: none;
+      background-color: var(--snow);
+      padding: 76px 0 0;
+    }
+    .hero-photo {
+      display: block; width: 100%; height: auto;
+      margin-top: 48px; border-top: 1px solid var(--line);
+    }
+  }
+
   .btn {
     font-family: "Inter", sans-serif; font-weight: 500; font-size: 0.94rem;
     text-decoration: none; padding: 13px 24px; border-radius: 4px;
@@ -278,6 +280,7 @@
         <a class="btn" href="#work">See the work</a>
       </div>
     </div>
+    <img class="hero-photo" src="front-range.jpeg" alt="Snow-covered peaks of the Colorado Front Range rising beyond forested foothills west of Denver." width="2200" height="1467" decoding="async">
   </div>
 
   <section class="sec tint" id="approach">
