@@ -15,8 +15,9 @@
   :root {
     --snow:       #F4F8FC;   /* snow in daylight       -> page */
     --card:       #FFFFFF;
-    --sky:        #CFE3F5;   /* open sky               -> panels, highlight */
     --haze:       #DCE9F6;   /* sky at the horizon     -> alternating sections */
+    --sky:        #CFE3F5;   /* open sky               -> stats panel, highlight */
+    --sky-deep:   #B4D2EF;   /* sky overhead           -> footer */
     --mid:        #3A6698;   /* mid slope in sunlight  -> rules, accents */
     --ridge:      #3F6E9E;   /* sunlit ridge           -> small accents */
     --depth:      #1F4A78;   /* shadowed slope         -> buttons, numerals */
@@ -229,7 +230,10 @@
   .facts dd { font-size: 0.97rem; font-weight: 400; margin-top: 3px; color: var(--ink); }
 
   /* contact / footer */
-  footer { padding: 88px 0 56px; background: var(--sky); color: var(--pine); }
+  footer {
+    padding: 88px 0 56px; background: var(--sky-deep); color: var(--pine);
+    border-top: 4px solid var(--mid);
+  }
   footer h2 {
     font-size: clamp(1.9rem, 4.2vw, 2.6rem); font-weight: 700;
     letter-spacing: -0.035em; max-width: 20ch; color: var(--ink);
@@ -239,7 +243,7 @@
   }
   .foot-row { margin-top: 36px; }
   .fineprint {
-    margin-top: 64px; padding-top: 22px; border-top: 1px solid rgba(31,74,120,0.25);
+    margin-top: 64px; padding-top: 22px; border-top: 1px solid rgba(31,74,120,0.28);
   }
   .fineprint .mono { color: var(--depth); }
 </style>
