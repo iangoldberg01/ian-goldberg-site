@@ -9,20 +9,21 @@
 <link rel="preload" as="image" href="front-range.jpeg">
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  /* Palette sampled from the Front Range photograph. The photo's mean
-     saturation is 0.40, so the page carries large blocks of real color
-     rather than pale tints of it. */
+  /* Palette sampled from the Front Range photograph. The page descends the
+     way the photo does: sky at the top, forest at the bottom. */
   :root {
-    --snow:   #F4F8FC;   /* snow in daylight       -> page */
-    --card:   #FFFFFF;
-    --sky:    #CFE3F5;   /* open sky               -> highlight */
-    --haze:   #DCE9F6;   /* sky at the horizon     -> alternating sections */
-    --ridge:  #3F6E9E;   /* sunlit ridge           -> mid accent */
-    --depth:  #1F4A78;   /* shadowed slope         -> primary accent */
-    --navy:   #19365F;   /* deepest saturated blue -> anchor blocks */
-    --pine:   #2A3A46;   /* forest                 -> secondary text */
-    --ink:    #0D1216;   /* darkest treeline       -> headings */
-    --line:   #CFDDEA;
+    --snow:       #F4F8FC;   /* snow in daylight        -> page */
+    --card:       #FFFFFF;
+    --sky:        #CFE3F5;   /* open sky                -> highlight */
+    --haze:       #DCE9F6;   /* sky at the horizon      -> alternating sections */
+    --ridge:      #3F6E9E;   /* sunlit ridge            -> mid accent */
+    --depth:      #1F4A78;   /* shadowed slope          -> primary accent */
+    --navy:       #19365F;   /* deepest saturated blue  -> stats anchor */
+    --forest:     #262824;   /* pine canopy, 79deg hue  -> footer */
+    --forest-lit: #3D3E33;   /* sunlit canopy           -> forest accents */
+    --pine:       #2A3A46;   /* haze-shifted forest     -> secondary text */
+    --ink:        #0D1216;   /* darkest treeline        -> headings */
+    --line:       #CFDDEA;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -159,10 +160,10 @@
     font-weight: 500; letter-spacing: -0.03em; line-height: 1.14;
   }
 
-  /* principles */
+  /* principles: grounded, so they take the forest tone */
   .principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
   @media (max-width: 800px) { .principles { grid-template-columns: 1fr; } }
-  .principle { border-top: 3px solid var(--depth); padding-top: 20px; }
+  .principle { border-top: 3px solid var(--forest-lit); padding-top: 20px; }
   .principle h3 { font-size: 1.12rem; font-weight: 500; margin-bottom: 10px; letter-spacing: -0.015em; }
   .principle p { color: var(--pine); font-size: 0.97rem; font-weight: 300; }
 
@@ -209,7 +210,7 @@
   .about-copy p + p { margin-top: 18px; }
   .facts {
     border: 1px solid var(--line); border-radius: 4px; background: var(--card);
-    padding: 26px; border-left: 4px solid var(--depth);
+    padding: 26px; border-left: 4px solid var(--forest-lit);
   }
   .facts dt {
     font-family: "Roboto Mono", monospace; font-size: 0.65rem; letter-spacing: 0.12em;
@@ -218,23 +219,23 @@
   .facts dt:first-child { margin-top: 0; }
   .facts dd { font-size: 0.97rem; font-weight: 400; margin-top: 3px; color: var(--ink); }
 
-  /* contact / footer: the closing block of saturated color */
-  footer { padding: 88px 0 56px; background: var(--navy); color: #fff; }
+  /* contact / footer: the treeline at the bottom of the frame */
+  footer { padding: 88px 0 56px; background: var(--forest); color: #fff; }
   footer h2 {
     font-size: clamp(1.9rem, 4.2vw, 2.6rem); font-weight: 700;
     letter-spacing: -0.035em; max-width: 20ch; color: #fff;
   }
   footer .contact-copy {
-    margin-top: 18px; color: rgba(255,255,255,0.8); font-weight: 300; max-width: 52ch;
+    margin-top: 18px; color: rgba(255,255,255,0.78); font-weight: 300; max-width: 52ch;
   }
   .foot-row { margin-top: 36px; }
-  footer .btn { background: #fff; color: var(--navy); font-weight: 600; }
-  footer .btn:hover { background: var(--sky); color: var(--navy); box-shadow: none; }
+  footer .btn { background: #fff; color: var(--forest); font-weight: 600; }
+  footer .btn:hover { background: var(--sky); color: var(--forest); box-shadow: none; }
   footer a:focus-visible { outline-color: #fff; }
   .fineprint {
     margin-top: 64px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.22);
   }
-  .fineprint .mono { color: rgba(255,255,255,0.6); }
+  .fineprint .mono { color: rgba(255,255,255,0.58); }
 </style>
 </head>
 <body>
