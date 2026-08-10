@@ -6,18 +6,19 @@
 <title>Ian Goldberg | Adoption & Enablement</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="front-range.jpeg">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  /* Palette sampled directly from the Front Range photograph below. */
+  /* Palette sampled from the Front Range photograph used in the hero. */
   :root {
-    --snow:   #F8F9F9;   /* brightest snow        -> page */
+    --snow:   #F8F9F9;   /* brightest snow      -> page */
     --card:   #FFFFFF;
-    --sky:    #C9E4FB;   /* pale sky near horizon -> highlight */
-    --haze:   #E4EFF9;   /* sky wash              -> soft fills */
-    --ridge:  #4B6E9F;   /* sunlit ridge          -> mid accent */
-    --depth:  #2D486B;   /* deep shadowed slope   -> primary accent */
-    --pine:   #283137;   /* forest                -> secondary text */
-    --ink:    #0D1216;   /* darkest treeline      -> headings */
+    --sky:    #79CBFF;   /* bright open sky     -> highlight */
+    --haze:   #E4EFF9;
+    --ridge:  #4B6E9F;   /* sunlit ridge        -> mid accent */
+    --depth:  #2D486B;   /* deep shadowed slope -> primary accent */
+    --pine:   #283137;   /* forest              -> secondary text */
+    --ink:    #0D1216;   /* darkest treeline    -> headings */
     --line:   #DEE5EA;
   }
 
@@ -61,7 +62,7 @@
   /* ---------- header ---------- */
   header {
     position: sticky; top: 0; z-index: 30;
-    background: rgba(248,249,249,0.88);
+    background: rgba(248,249,249,0.86);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--line);
   }
@@ -93,8 +94,27 @@
   .hl.on { background-size: 100% 38%; }
   @media (prefers-reduced-motion: reduce) { .hl { background-size: 100% 38%; } }
 
-  /* ---------- hero ---------- */
-  .hero { padding: 100px 0 88px; border-bottom: 1px solid var(--line); }
+  /* ---------- hero over the photograph ---------- */
+  .hero {
+    position: relative;
+    padding: 112px 0 104px;
+    border-bottom: 1px solid var(--line);
+    background-image:
+      linear-gradient(100deg,
+        rgba(248,249,249,0.96) 0%,
+        rgba(248,249,249,0.90) 42%,
+        rgba(248,249,249,0.58) 100%),
+      url("front-range.jpeg");
+    background-size: cover;
+    background-position: center 58%;
+    background-repeat: no-repeat;
+  }
+  .hero::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 90px;
+    background: linear-gradient(to bottom, rgba(248,249,249,0), var(--snow));
+    pointer-events: none;
+  }
+  .hero .wrap { position: relative; z-index: 2; }
   .hero .mono { display: block; margin-bottom: 24px; }
   .hero h1 {
     font-size: clamp(2.5rem, 6.2vw, 4.4rem);
@@ -102,11 +122,11 @@
     max-width: 15ch;
   }
   .hero .lede {
-    margin-top: 28px; max-width: 58ch;
-    font-size: 1.16rem; font-weight: 300; color: var(--pine);
+    margin-top: 28px; max-width: 54ch;
+    font-size: 1.16rem; font-weight: 400; color: var(--pine);
   }
-  .hero .lede strong { color: var(--ink); font-weight: 500; }
-  .cta-row { margin-top: 40px; }
+  .hero .lede strong { color: var(--ink); font-weight: 700; }
+  .cta-row { margin-top: 40px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
   .btn {
     font-family: "Roboto", sans-serif; font-weight: 500; font-size: 0.94rem;
     text-decoration: none; padding: 13px 26px; border-radius: 100px;
@@ -117,6 +137,7 @@
     background: var(--ridge); transform: translateY(-1px);
     box-shadow: 0 8px 20px -10px rgba(45,72,107,0.7);
   }
+  .photo-credit { color: var(--depth); }
 
   /* ---------- sections ---------- */
   .sec { padding: 86px 0; border-bottom: 1px solid var(--line); }
@@ -128,18 +149,6 @@
   .sec-head h2 {
     font-size: clamp(1.7rem, 3.4vw, 2.25rem);
     font-weight: 700; letter-spacing: -0.03em; line-height: 1.12;
-  }
-
-  /* ---------- photograph ---------- */
-  .photo-sec { padding: 64px 0; border-bottom: 1px solid var(--line); background: var(--haze); }
-  .photo-figure { max-width: 820px; margin: 0 auto; padding: 0 24px; }
-  .photo-figure img {
-    width: 100%; height: auto; display: block; border-radius: 10px;
-    box-shadow: 0 16px 38px -22px rgba(13,18,22,0.5);
-  }
-  .photo-figure figcaption {
-    margin-top: 13px; display: flex; justify-content: space-between;
-    flex-wrap: wrap; gap: 8px;
   }
 
   /* principles */
@@ -229,6 +238,7 @@
       <p class="lede">I'm Ian. Most training content is written by experts, for experts. I build training, tools, and workflows for <strong>everyone else</strong>: the teams who are told to adopt something new and handed a login.</p>
       <div class="cta-row">
         <a class="btn" href="#work">See the work</a>
+        <span class="mono photo-credit">Front Range, west of Denver</span>
       </div>
     </div>
   </div>
@@ -290,16 +300,6 @@
         <div class="stat"><b>9 yrs</b><span>enterprise software, from consulting to platform product management</span></div>
       </div>
     </div>
-  </section>
-
-  <section class="photo-sec">
-    <figure class="photo-figure">
-      <img src="front-range.jpeg" alt="Snow-covered peaks of the Colorado Front Range rising beyond forested foothills west of Denver." loading="lazy" decoding="async" width="2200" height="1467">
-      <figcaption>
-        <span class="mono">Front Range, west of Denver</span>
-        <span class="mono">Colorado</span>
-      </figcaption>
-    </figure>
   </section>
 
   <section class="sec" id="about">
