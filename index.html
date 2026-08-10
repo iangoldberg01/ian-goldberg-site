@@ -6,15 +6,16 @@
 <title>Ian Goldberg | Adoption & Enablement</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper: #FAFAF7;
-    --ink: #1C2733;
-    --slate: #5C6B7A;
-    --marker: #FFE34D;
-    --line: #DFE3E0;
-    --card: #FFFFFF;
+    --paper:  #F3F6F7;
+    --card:   #FFFFFF;
+    --ink:    #14202B;
+    --slate:  #5A6B7A;
+    --alpine: #2C5E8C;
+    --marker: #FFE24D;
+    --line:   #DCE4E8;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -29,24 +30,37 @@
     background: var(--paper);
     color: var(--ink);
     font-family: "Source Serif 4", Georgia, serif;
-    font-size: 1.075rem;
-    line-height: 1.65;
+    font-size: 1.08rem;
+    line-height: 1.68;
     -webkit-font-smoothing: antialiased;
+    position: relative;
+  }
+
+  /* faint paper grain, sits above background, never intercepts clicks */
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
+    pointer-events: none; z-index: 1;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/></filter><rect width='140' height='140' filter='url(%23n)'/></svg>");
   }
 
   .mono {
     font-family: "IBM Plex Mono", ui-monospace, monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--slate);
   }
 
-  h1, h2, h3 { font-family: "Archivo", system-ui, sans-serif; line-height: 1.08; }
+  h1, h2, h3 {
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    line-height: 1.05;
+  }
 
   a { color: inherit; }
   a:focus-visible, button:focus-visible {
-    outline: 3px solid var(--ink);
+    outline: 3px solid var(--alpine);
     outline-offset: 3px;
     border-radius: 2px;
   }
@@ -55,135 +69,151 @@
 
   /* ---------- header ---------- */
   header {
-    position: sticky; top: 0; z-index: 20;
-    background: rgba(250,250,247,0.92);
-    backdrop-filter: blur(6px);
+    position: sticky; top: 0; z-index: 30;
+    background: rgba(243,246,247,0.88);
+    backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--line);
   }
-  .nav {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 16px 0;
-  }
+  .nav { display: flex; align-items: center; justify-content: space-between; padding: 15px 0; }
   .wordmark {
-    font-family: "Archivo", sans-serif; font-weight: 800; font-size: 1rem;
-    text-decoration: none; letter-spacing: -0.01em;
+    font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: 1.02rem;
+    text-decoration: none; letter-spacing: -0.015em;
   }
-  .wordmark span { background: linear-gradient(transparent 55%, var(--marker) 55%); }
-  .nav-links { display: flex; gap: 26px; list-style: none; }
+  .wordmark span { background: linear-gradient(transparent 56%, var(--marker) 56%); }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
   .nav-links a {
-    font-family: "IBM Plex Mono", monospace; font-size: 0.72rem;
-    letter-spacing: 0.1em; text-transform: uppercase;
+    font-family: "IBM Plex Mono", monospace; font-size: 0.7rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
     text-decoration: none; color: var(--slate);
+    padding-bottom: 3px; border-bottom: 1.5px solid transparent;
+    transition: color .18s ease, border-color .18s ease;
   }
-  .nav-links a:hover { color: var(--ink); }
+  .nav-links a:hover { color: var(--ink); border-bottom-color: var(--marker); }
   @media (max-width: 640px) { .nav-links { display: none; } }
 
   /* ---------- highlighter signature ---------- */
   .hl {
     background-image: linear-gradient(0deg, var(--marker) 0%, var(--marker) 100%);
     background-repeat: no-repeat;
-    background-size: 0% 42%;
-    background-position: 0 78%;
-    transition: background-size 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    background-size: 0% 40%;
+    background-position: 0 80%;
+    transition: background-size 1s cubic-bezier(0.22, 1, 0.36, 1);
     padding: 0 0.06em;
   }
-  .hl.on { background-size: 100% 42%; }
-  @media (prefers-reduced-motion: reduce) {
-    .hl { background-size: 100% 42%; }
-  }
+  .hl.on { background-size: 100% 40%; }
+  @media (prefers-reduced-motion: reduce) { .hl { background-size: 100% 40%; } }
 
   /* ---------- hero ---------- */
-  .hero { padding: 96px 0 84px; border-bottom: 1px solid var(--line); }
-  .hero .mono { display: block; margin-bottom: 22px; }
+  .hero { padding: 104px 0 92px; border-bottom: 1px solid var(--line); position: relative; z-index: 2; }
+  .hero .mono { display: block; margin-bottom: 24px; }
   .hero h1 {
-    font-size: clamp(2.4rem, 6vw, 4.4rem);
-    font-weight: 800; letter-spacing: -0.025em;
+    font-size: clamp(2.5rem, 6.4vw, 4.6rem);
+    font-weight: 800; letter-spacing: -0.03em;
     max-width: 15ch;
   }
-  .hero p.lede {
-    margin-top: 28px; max-width: 54ch;
-    font-size: 1.2rem; color: var(--slate);
+  .hero .lede {
+    margin-top: 30px; max-width: 56ch;
+    font-size: 1.22rem; color: var(--slate);
   }
-  .hero p.lede strong { color: var(--ink); font-weight: 600; }
-  .cta-row { margin-top: 38px; display: flex; gap: 14px; flex-wrap: wrap; }
+  .hero .lede strong { color: var(--ink); font-weight: 600; }
+  .cta-row { margin-top: 40px; }
   .btn {
-    font-family: "Archivo", sans-serif; font-weight: 700; font-size: 0.92rem;
-    text-decoration: none; padding: 13px 22px; border-radius: 4px;
-    display: inline-block;
+    font-family: "Bricolage Grotesque", sans-serif; font-weight: 700; font-size: 0.92rem;
+    text-decoration: none; padding: 14px 24px; border-radius: 3px;
+    display: inline-block; background: var(--ink); color: var(--paper);
+    transition: background .18s ease, transform .18s ease;
   }
-  .btn-primary { background: var(--ink); color: var(--paper); }
-  .btn-primary:hover { background: #2C3B4B; }
-  .btn-ghost { border: 1.5px solid var(--ink); }
-  .btn-ghost:hover { background: var(--marker); border-color: var(--ink); }
+  .btn:hover { background: var(--alpine); transform: translateY(-1px); }
 
   /* ---------- sections ---------- */
-  section { padding: 84px 0; border-bottom: 1px solid var(--line); }
-  .sec-head { display: flex; align-items: baseline; gap: 18px; margin-bottom: 44px; }
-  .sec-head h2 { font-size: clamp(1.6rem, 3.2vw, 2.2rem); font-weight: 800; letter-spacing: -0.02em; }
+  .band-sec { padding: 88px 0; border-bottom: 1px solid var(--line); position: relative; z-index: 2; }
+  .sec-head { margin-bottom: 48px; }
+  .sec-head::before {
+    content: ""; display: block; width: 34px; height: 3px;
+    background: var(--alpine); margin-bottom: 18px;
+  }
+  .sec-head h2 {
+    font-size: clamp(1.7rem, 3.4vw, 2.3rem);
+    font-weight: 700; letter-spacing: -0.025em;
+  }
 
   /* ---------- landscape band ---------- */
   .band {
-    width: 100%;
-    height: clamp(170px, 24vw, 290px);
-    display: block;
-    object-fit: cover;
-    object-position: center center;
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
+    width: 100%; height: clamp(170px, 24vw, 290px);
+    display: block; object-fit: cover; object-position: center center;
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    position: relative; z-index: 2;
   }
   .band-cap {
-    display: block;
-    text-align: right;
-    padding: 10px 24px 0;
-    max-width: 1060px;
-    margin: 0 auto;
+    display: block; text-align: right;
+    padding: 10px 24px 0; max-width: 1060px; margin: 0 auto;
+    position: relative; z-index: 2;
   }
 
   /* principles */
-  .principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
   @media (max-width: 800px) { .principles { grid-template-columns: 1fr; } }
-  .principle { border-top: 3px solid var(--ink); padding-top: 18px; }
-  .principle h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 10px; }
-  .principle p { color: var(--slate); font-size: 0.98rem; }
+  .principle { border-top: 2px solid var(--ink); padding-top: 20px; }
+  .principle h3 { font-size: 1.16rem; font-weight: 700; margin-bottom: 11px; letter-spacing: -0.01em; }
+  .principle p { color: var(--slate); font-size: 0.99rem; }
 
   /* proof */
   .proof-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
   @media (max-width: 800px) { .proof-grid { grid-template-columns: 1fr; } }
   .proof-card {
-    background: var(--card); border: 1px solid var(--line); border-radius: 8px;
-    padding: 26px 26px 24px;
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+    padding: 28px 28px 26px;
+    transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
   }
-  .proof-card .mono { display: block; margin-bottom: 12px; }
-  .proof-card h3 { font-size: 1.18rem; font-weight: 700; margin-bottom: 10px; }
-  .proof-card p { color: var(--slate); font-size: 0.98rem; }
+  .proof-card:hover {
+    border-color: var(--alpine);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 28px -18px rgba(20,32,43,0.45);
+  }
+  .proof-card .mono { display: block; margin-bottom: 13px; color: var(--alpine); }
+  .proof-card h3 { font-size: 1.18rem; font-weight: 700; margin-bottom: 11px; letter-spacing: -0.015em; }
+  .proof-card p { color: var(--slate); font-size: 0.99rem; }
 
   .stats {
-    margin-top: 40px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
-    border-top: 1px solid var(--line); padding-top: 32px;
+    margin-top: 44px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+    border-top: 1px solid var(--line); padding-top: 34px;
   }
   @media (max-width: 800px) { .stats { grid-template-columns: repeat(2, 1fr); } }
   .stat b {
-    font-family: "Archivo", sans-serif; font-weight: 800;
-    font-size: clamp(1.5rem, 3vw, 2rem); letter-spacing: -0.02em; display: block;
+    font-family: "Bricolage Grotesque", sans-serif; font-weight: 800;
+    font-size: clamp(1.6rem, 3.2vw, 2.15rem); letter-spacing: -0.03em;
+    display: block; color: var(--alpine); margin-bottom: 4px;
   }
-  .stat span { color: var(--slate); font-size: 0.85rem; }
+  .stat span { color: var(--slate); font-size: 0.86rem; line-height: 1.5; display: block; }
 
   /* about */
-  .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: start; }
+  .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 52px; align-items: start; }
   @media (max-width: 800px) { .about-grid { grid-template-columns: 1fr; } }
-  .about-grid p + p { margin-top: 16px; }
-  .facts { border: 1px solid var(--line); border-radius: 8px; background: var(--card); padding: 24px; }
-  .facts dt { font-family: "IBM Plex Mono", monospace; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--slate); margin-top: 14px; }
+  .about-copy p + p { margin-top: 18px; }
+  .facts {
+    border: 1px solid var(--line); border-radius: 10px; background: var(--card);
+    padding: 26px; border-left: 3px solid var(--alpine);
+  }
+  .facts dt {
+    font-family: "IBM Plex Mono", monospace; font-size: 0.66rem; letter-spacing: 0.13em;
+    text-transform: uppercase; color: var(--slate); margin-top: 17px;
+  }
   .facts dt:first-child { margin-top: 0; }
-  .facts dd { font-size: 0.98rem; margin-top: 3px; }
+  .facts dd { font-size: 0.99rem; margin-top: 3px; }
 
   /* contact / footer */
-  footer { padding: 72px 0 56px; }
-  footer h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; letter-spacing: -0.02em; max-width: 20ch; }
-  footer p { margin-top: 16px; color: var(--slate); max-width: 50ch; }
-  .foot-row { margin-top: 34px; display: flex; gap: 14px; flex-wrap: wrap; }
-  .fineprint { margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--line);
-    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  footer { padding: 80px 0 60px; position: relative; z-index: 2; }
+  footer h2 {
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-size: clamp(1.9rem, 4.2vw, 2.7rem); font-weight: 800;
+    letter-spacing: -0.03em; max-width: 20ch;
+  }
+  footer .contact-copy { margin-top: 18px; color: var(--slate); max-width: 50ch; }
+  .foot-row { margin-top: 36px; }
+  .fineprint {
+    margin-top: 68px; padding-top: 22px; border-top: 1px solid var(--line);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  }
 </style>
 </head>
 <body>
@@ -208,15 +238,14 @@
       <h1>Good training <span class="hl">assumes nothing.</span></h1>
       <p class="lede">I'm Ian. Most training content is written by experts, for experts. I build training, tools, and workflows for <strong>everyone else</strong>: the teams who are told to adopt something new and handed a login.</p>
       <div class="cta-row">
-        <a class="btn btn-primary" href="#work">See the work</a>
+        <a class="btn" href="#work">See the work</a>
       </div>
     </div>
   </div>
 
-  <section id="approach">
+  <section class="band-sec" id="approach">
     <div class="wrap">
       <div class="sec-head">
-        <span class="mono">01</span>
         <h2>How I work</h2>
       </div>
       <div class="principles">
@@ -236,10 +265,9 @@
     </div>
   </section>
 
-  <section id="work">
+  <section class="band-sec" id="work">
     <div class="wrap">
       <div class="sec-head">
-        <span class="mono">02</span>
         <h2>Enablement work, in the wild</h2>
       </div>
       <div class="proof-grid">
@@ -277,14 +305,13 @@
   <img class="band" src="denver.jpeg?v=3" alt="Snow-covered peaks of the Colorado Front Range seen across forested foothills west of Denver." loading="lazy" decoding="async" width="2000" height="500">
   <span class="mono band-cap">Front Range, west of Denver</span>
 
-  <section id="about">
+  <section class="band-sec" id="about">
     <div class="wrap">
       <div class="sec-head">
-        <span class="mono">03</span>
         <h2>About</h2>
       </div>
       <div class="about-grid">
-        <div>
+        <div class="about-copy">
           <p>I'm a product manager with nine years in enterprise software: five implementing enterprise systems for large clients as a consultant and solution architect, and four running an internal developer platform used by more than 1,500 engineers every month.</p>
           <p>That combination is the point. I've been the person explaining complex systems to skeptical rooms, and the person responsible for whether a platform actually gets adopted. Adoption is the same problem no matter the tool: the technology is rarely the bottleneck. <span class="hl">The teaching is.</span></p>
         </div>
@@ -302,11 +329,10 @@
 
 <footer id="contact">
   <div class="wrap">
-    <span class="mono">04 &middot; Contact</span>
-    <h2 style="margin-top:18px;"><span class="hl">Get in touch.</span></h2>
-    <p>I'm happy to talk about enablement, training programs, or how any of the work above was built.</p>
+    <h2><span class="hl">Get in touch.</span></h2>
+    <p class="contact-copy">I'm happy to talk about enablement, training programs, or how any of the work above was built.</p>
     <div class="foot-row">
-      <a class="btn btn-primary" href="https://www.linkedin.com/in/ian-goldberg">Connect on LinkedIn</a>
+      <a class="btn" href="https://www.linkedin.com/in/ian-goldberg">Connect on LinkedIn</a>
     </div>
     <div class="fineprint">
       <span class="mono">&copy; 2026 Ian Goldberg</span>
