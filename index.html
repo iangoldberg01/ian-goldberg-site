@@ -123,13 +123,18 @@
     background-repeat: no-repeat;
   }
   @media (max-width: 760px) {
-    /* text spans the full width on small screens, so fall back to a wash */
+    /* Text spans the full width here, so the halo can't do the work. Keep the
+       wash light and let a soft glow behind the type carry legibility. */
     .hero {
       background-image:
-        linear-gradient(rgba(244,248,252,0.90), rgba(244,248,252,0.78)),
+        linear-gradient(rgba(244,248,252,0.72), rgba(244,248,252,0.44)),
         url("front-range.jpeg");
       padding: 84px 0 76px;
     }
+    .hero .mono,
+    .hero h1,
+    .hero .lede { text-shadow: 0 1px 14px rgba(244,248,252,0.95), 0 0 3px rgba(244,248,252,0.9); }
+    .hero .lede { font-weight: 500; color: var(--ink); }
   }
   .hero .wrap { position: relative; z-index: 2; }
   .hero .mono { display: block; margin-bottom: 24px; color: var(--depth); }
