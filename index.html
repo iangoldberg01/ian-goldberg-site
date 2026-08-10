@@ -121,6 +121,24 @@
   .sec-head { display: flex; align-items: baseline; gap: 18px; margin-bottom: 44px; }
   .sec-head h2 { font-size: clamp(1.6rem, 3.2vw, 2.2rem); font-weight: 800; letter-spacing: -0.02em; }
 
+  /* ---------- landscape band ---------- */
+  .band {
+    width: 100%;
+    height: clamp(180px, 26vw, 300px);
+    display: block;
+    object-fit: cover;
+    object-position: center 42%;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .band-cap {
+    display: block;
+    text-align: right;
+    padding: 10px 24px 0;
+    max-width: 1060px;
+    margin: 0 auto;
+  }
+
   /* principles */
   .principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
   @media (max-width: 800px) { .principles { grid-template-columns: 1fr; } }
@@ -255,6 +273,9 @@
       </div>
     </div>
   </section>
+
+  <img class="band" src="denver.jpeg" alt="Snow-covered peaks of the Colorado Front Range seen across forested foothills west of Denver." loading="lazy" decoding="async" width="1800" height="936">
+  <span class="mono band-cap">Front Range, west of Denver</span>
 
   <section id="about">
     <div class="wrap">
