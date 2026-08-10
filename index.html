@@ -10,18 +10,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   /* Palette sampled from the Front Range photograph. The page descends the
-     way the photo does: sky at the top, forest at the bottom. */
+     way the photo does: sky, ridge, deep slope, treeline. Saturated bands
+     carry most of the page rather than sitting as accents on white. */
   :root {
-    --snow:       #F4F8FC;   /* snow in daylight        -> page */
+    --snow:       #F4F8FC;   /* snow in daylight        -> light bands */
     --card:       #FFFFFF;
     --sky:        #CFE3F5;   /* open sky                -> highlight */
-    --haze:       #DCE9F6;   /* sky at the horizon      -> alternating sections */
+    --haze:       #DCE9F6;   /* sky at the horizon      -> soft fills */
     --ridge:      #3F6E9E;   /* sunlit ridge            -> mid accent */
     --depth:      #1F4A78;   /* shadowed slope          -> primary accent */
-    --navy:       #19365F;   /* deepest saturated blue  -> stats anchor */
-    --forest:     #262824;   /* pine canopy, 79deg hue  -> footer */
+    --navy:       #19365F;   /* deepest saturated blue  -> dark bands */
+    --forest:     #262824;   /* pine canopy, 79deg hue  -> closing bands */
     --forest-lit: #3D3E33;   /* sunlit canopy           -> forest accents */
-    --pine:       #2A3A46;   /* haze-shifted forest     -> secondary text */
+    --pine:       #2A3A46;   /* haze-shifted forest     -> body text */
     --ink:        #0D1216;   /* darkest treeline        -> headings */
     --line:       #CFDDEA;
   }
@@ -106,7 +107,6 @@
   .hero {
     position: relative;
     padding: 112px 0 104px;
-    border-bottom: 1px solid var(--line);
     background-image:
       linear-gradient(100deg,
         rgba(244,248,252,0.93) 0%,
@@ -116,11 +116,6 @@
     background-size: cover;
     background-position: center 58%;
     background-repeat: no-repeat;
-  }
-  .hero::after {
-    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 90px;
-    background: linear-gradient(to bottom, rgba(244,248,252,0), var(--snow));
-    pointer-events: none;
   }
   .hero .wrap { position: relative; z-index: 2; }
   .hero .mono { display: block; margin-bottom: 24px; color: var(--depth); }
@@ -148,8 +143,8 @@
   }
 
   /* ---------- sections ---------- */
-  .sec { padding: 86px 0; border-bottom: 1px solid var(--line); }
-  .sec.tint { background: var(--haze); }
+  .sec { padding: 92px 0; }
+  .sec.light { background: var(--snow); }
   .sec-head { margin-bottom: 46px; }
   .sec-head::before {
     content: ""; display: block; width: 36px; height: 4px;
@@ -160,12 +155,29 @@
     font-weight: 500; letter-spacing: -0.03em; line-height: 1.14;
   }
 
-  /* principles: grounded, so they take the forest tone */
+  /* full-bleed saturated bands */
+  .sec.navy   { background: var(--navy); }
+  .sec.forest { background: var(--forest); }
+  .sec.navy .sec-head h2,
+  .sec.forest .sec-head h2 { color: #fff; }
+  .sec.navy .sec-head::before   { background: var(--sky); }
+  .sec.forest .sec-head::before { background: var(--forest-lit); }
+  .sec.navy .principle h3,
+  .sec.forest .principle h3 { color: #fff; }
+  .sec.navy .principle,
+  .sec.forest .principle { border-top-color: rgba(255,255,255,0.45); }
+  .sec.navy p,
+  .sec.forest p { color: rgba(255,255,255,0.82); }
+  /* on dark bands the highlighter needs dark text to stay a highlighter */
+  .sec.navy .hl,
+  .sec.forest .hl { color: var(--ink); }
+
+  /* principles */
   .principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
   @media (max-width: 800px) { .principles { grid-template-columns: 1fr; } }
   .principle { border-top: 3px solid var(--forest-lit); padding-top: 20px; }
   .principle h3 { font-size: 1.12rem; font-weight: 500; margin-bottom: 10px; letter-spacing: -0.015em; }
-  .principle p { color: var(--pine); font-size: 0.97rem; font-weight: 300; }
+  .principle p { font-size: 0.97rem; font-weight: 300; }
 
   /* proof */
   .proof-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
@@ -206,10 +218,9 @@
   /* about */
   .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 52px; align-items: start; }
   @media (max-width: 800px) { .about-grid { grid-template-columns: 1fr; } }
-  .about-copy p { font-weight: 300; }
   .about-copy p + p { margin-top: 18px; }
   .facts {
-    border: 1px solid var(--line); border-radius: 4px; background: var(--card);
+    border-radius: 4px; background: var(--card);
     padding: 26px; border-left: 4px solid var(--forest-lit);
   }
   .facts dt {
@@ -265,7 +276,7 @@
     </div>
   </div>
 
-  <section class="sec tint" id="approach">
+  <section class="sec navy" id="approach">
     <div class="wrap">
       <div class="sec-head">
         <h2>How I work</h2>
@@ -287,7 +298,7 @@
     </div>
   </section>
 
-  <section class="sec" id="work">
+  <section class="sec light" id="work">
     <div class="wrap">
       <div class="sec-head">
         <h2>Enablement work, in the wild</h2>
@@ -324,7 +335,7 @@
     </div>
   </section>
 
-  <section class="sec tint" id="about">
+  <section class="sec forest" id="about">
     <div class="wrap">
       <div class="sec-head">
         <h2>About</h2>
